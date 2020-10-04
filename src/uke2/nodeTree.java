@@ -1,3 +1,5 @@
+package uke2;
+
 public class nodeTree {
 
     // Eksempel til forelesning del 1 av bobling, sortering osv.

@@ -1,3 +1,5 @@
+package uke2;
+
 public class bubblesortingEx {
     public static void main(String[] args) {
         int[] a = {1,9,2,4,7,6};
