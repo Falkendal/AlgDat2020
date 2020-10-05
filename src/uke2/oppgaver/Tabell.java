@@ -11,27 +11,27 @@ public class Tabell {
     public static void main(String ... args)      // hovedprogram
     {
         // Initial
-        System.out.println("Initial fra kompendiet:");
-        int[] x = Tabell.randPerm(20);              // en tilfeldig tabell
-        for (int k : x) System.out.print(k + " ");  // skriver ut a
+        //System.out.println("Initial fra kompendiet:");
+        //int[] x = Tabell.randPerm(20);              // en tilfeldig tabell
+        //for (int k : x) System.out.print(k + " ");  // skriver ut a
 
-        int m = Tabell.maks(x);   // finner posisjonen til største verdi
+        //int m = Tabell.maks(x);   // finner posisjonen til største verdi
 
-        System.out.println("\nStørste verdi ligger på plass " + m);
+        //System.out.println("\nStørste verdi ligger på plass " + m);
 
         // 1.2.2: Oppgave 3
-        char[] c = {'A', 'B', 'C', 'D', 'E'};
-        bytt(c, 0, 1);
+        //char[] c = {'A', 'B', 'C', 'D', 'E'};
+        //bytt(c, 0, 1);
 
         // 1.2.2: Oppgave 4
-        System.out.print("\nOppgave 4: ");
-        skriv(x);
-        System.out.println();
+        //System.out.print("\nOppgave 4: ");
+        //skriv(x);
+        //System.out.println();
 
         // 1.2.2: Oppgave 5
-        System.out.print("\nOppgave 5: ");
-        skrivln(x);
-        System.out.println();
+        //System.out.print("\nOppgave 5: ");
+        //skrivln(x);
+        //System.out.println();
 
 
         // 1.2.3: Oppgave 3
@@ -40,7 +40,93 @@ public class Tabell {
         // maks(testeOpg3, -1, 6);      //  "fra(-1) er negativ!"
         // maks(testeOpg3, 0, 10);     //   "til(10) > tablengde(6)"
         //maks(testeOpg3, 0, 5);      //    "Listen er tom!"
+
+        // 1.2.4: Oppgave 1
+        System.out.print("\nOppgave 1: ");
+        int[] a = Tabell.randPerm(20); // tilfeldig permutasjon av 1 . . 20
+        int[] b = Tabell.nestMaks2(a);  // metoden returnerer en tabell
+
+        int m = b[0], nm = b[1];       // m for maks, nm for nestmaks
+
+        Tabell.skrivln(a);        // se Oppgave 5 i Avsnitt 1.2.2
+        System.out.print("Størst(" + a[m] + ") har posisjon " + m);
+        System.out.println(", nest størst(" + a[nm] + ") har posisjon " + nm);
     }
+
+    // 1.2.4: Oppgave 4
+    public static void sortering(int[] a) {
+        
+    }
+
+    // 1.2.4: Oppgave 3
+    public static int[] nestMaks3(int[] a) {
+        if (a.length < 2) // må ha minst to verdier!
+            throw new IllegalArgumentException("a.length(" + a.length + ") < 2!");
+
+        int maks = maks(a);  // m er posisjonen til tabellens største verdi
+
+        bytt(a, a.length-1, maks); // bytter om slik at den største kommer bakerst
+
+        int nest_maks = maks(a, 0, a.length-1); // finner nest_maks
+
+        if(nest_maks == maks)
+            nest_maks = a.length-1; // den nest største lå opprinnelig forrest
+
+        bytt(a, a.length-1, maks); // bytter tilbake
+
+        return new int[] {maks,nest_maks};
+    }
+
+    // 1.2.4: Oppgave 2
+    public static int[] nestMaks2(int[] a) {
+        if (a.length < 2) // må ha minst to verdier!
+            throw new IllegalArgumentException("a.length(" + a.length + ") < 2!");
+
+        int maks = maks(a);  // m er posisjonen til tabellens største verdi
+
+        bytt(a, 0, maks); // bytter om slik at den største kommer forrest
+
+        int nest_maks = maks(a, 1, a.length);
+
+        if(nest_maks == maks)
+            nest_maks = 0; // den nest største lå opprinnelig forrest
+
+        bytt(a, 0, maks); // bytter tilbake
+
+        return new int[] {maks,nest_maks};
+    }
+
+    // Programkode 1.2.4 a)
+    public static int[] nestMaks(int[] a)  // legges i class Tabell
+    {
+        int n = a.length;   // tabellens lengde
+
+        if (n < 2) throw   // må ha minst to verdier!
+                new java.util.NoSuchElementException("a.length(" + n + ") < 2!");
+
+        int m = maks(a);  // m er posisjonen til tabellens største verdi
+
+        int nm;           // nm skal inneholde posisjonen til nest største verdi
+
+        if (m == 0)                            // den største ligger først
+        {
+            nm = maks(a, 1, n);                  // leter i a[1:n>
+        }
+        else if (m == n - 1)                   // den største ligger bakerst
+        {
+            nm = maks(a, 0, n - 1);              // leter i a[0:n-1>
+        }
+        else
+        {
+            int mv = maks(a, 0, m);              // leter i a[0:m>
+            int mh = maks(a, m + 1, n);          // leter i a[m+1:n>
+            nm = a[mh] > a[mv] ? mh : mv;        // hvem er størst?
+        }
+
+        return new int[] {m,nm};      // m i posisjon 0 , nm i posisjon 1
+
+    } // nestMaks
+
     // Programkode 1.2.3 d)
     public static void vhKontroll(int tablengde, int v, int h)
     {
