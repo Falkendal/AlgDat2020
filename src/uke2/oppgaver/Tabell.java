@@ -55,7 +55,11 @@ public class Tabell {
 
     // 1.2.4: Oppgave 4
     public static void sortering(int[] a) {
-        
+        // Løsningsforslag
+        for(int i = a.length; i > 1; i--) {
+            int m = maks(a, 0, i);
+            bytt(a, i-1, m);
+        }
     }
 
     // 1.2.4: Oppgave 3
