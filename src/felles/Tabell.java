@@ -1,4 +1,4 @@
-package uke2.oppgaver;
+package felles;
 
 import java.util.*;
 
@@ -42,6 +42,7 @@ public class Tabell {
         //maks(testeOpg3, 0, 5);      //    "Listen er tom!"
 
         // 1.2.4: Oppgave 1
+        /*
         System.out.print("\nOppgave 1: ");
         int[] a = Tabell.randPerm(20); // tilfeldig permutasjon av 1 . . 20
         int[] b = Tabell.nestMaks2(a);  // metoden returnerer en tabell
@@ -50,7 +51,46 @@ public class Tabell {
 
         Tabell.skrivln(a);        // se Oppgave 5 i Avsnitt 1.2.2
         System.out.print("Størst(" + a[m] + ") har posisjon " + m);
-        System.out.println(", nest størst(" + a[nm] + ") har posisjon " + nm);
+        System.out.println(", nest størst(" + a[nm] + ") har posisjon " + nm);*/
+    }
+
+    public static int maks(char[] a)     // legges i class Tabell
+    {
+        int m = 0;                           // indeks til største verdi
+        char maksverdi = a[0];             // største verdi
+
+        for (int i = 1; i < a.length; i++) if (a[i] > maksverdi)
+        {
+            maksverdi = a[i];     // største verdi oppdateres
+            m = i;                // indeks til største verdi oppdaters
+        }
+        return m;     // returnerer posisjonen til største verdi
+    }
+
+    public static int maks(double[] a)     // legges i class Tabell
+    {
+        int m = 0;                           // indeks til største verdi
+        double maksverdi = a[0];             // største verdi
+
+        for (int i = 1; i < a.length; i++) if (a[i] > maksverdi)
+        {
+            maksverdi = a[i];     // største verdi oppdateres
+            m = i;                // indeks til største verdi oppdaters
+        }
+        return m;     // returnerer posisjonen til største verdi
+    }
+
+    public static int maks(String[] a)    // legges i class Tabell
+    {
+        int m = 0;                          // indeks til største verdi
+        String maksverdi = a[0];            // største verdi
+
+        for (int i = 1; i < a.length; i++) if (a[i].compareTo(maksverdi) > 0)
+        {
+            maksverdi = a[i];  // største verdi oppdateres
+            m = i;             // indeks til største verdi oppdaters
+        }
+        return m;  // returnerer posisjonen til største verdi
     }
 
     // 1.2.4: Oppgave 4

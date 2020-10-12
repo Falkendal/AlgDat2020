@@ -1,5 +1,7 @@
 package uke2.oppgaver;
 
+import felles.Tabell;
+
 import java.util.Arrays;
 
 public class seksj1213 {
