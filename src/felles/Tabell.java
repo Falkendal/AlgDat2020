@@ -1,5 +1,10 @@
 package felles;
 
+import felles.eksempelklasser.Komparator;
+import felles.eksempelklasser.Person;
+import felles.eksempelklasser.Student;
+import felles.eksempelklasser.Studium;
+
 import java.util.*;
 
 public class Tabell {
@@ -10,15 +15,6 @@ public class Tabell {
     // Main
     public static void main(String ... args)      // hovedprogram
     {
-        // Initial
-        //System.out.println("Initial fra kompendiet:");
-        //int[] x = Tabell.randPerm(20);              // en tilfeldig tabell
-        //for (int k : x) System.out.print(k + " ");  // skriver ut a
-
-        //int m = Tabell.maks(x);   // finner posisjonen til største verdi
-
-        //System.out.println("\nStørste verdi ligger på plass " + m);
-
         // 1.2.2: Oppgave 3
         //char[] c = {'A', 'B', 'C', 'D', 'E'};
         //bytt(c, 0, 1);
@@ -52,7 +48,257 @@ public class Tabell {
         Tabell.skrivln(a);        // se Oppgave 5 i Avsnitt 1.2.2
         System.out.print("Størst(" + a[m] + ") har posisjon " + m);
         System.out.println(", nest størst(" + a[nm] + ") har posisjon " + nm);*/
+
+        // 1.4.2 Oppgave 1
+        /*
+        String[] s = {"Sohil","Per","Thanh","Fatima","Kari","Jasmin"};
+        int k = Tabell.maks(s);        // hvilken maks-metode? Den som har String[] som parameter, fordi om det allerede finnes en metode/funksjon med samme datatype og signatur, vil den velges.
+        System.out.println(s[k]);      // Utskrift:  Thanh
+        */
+        // 1.4.2 Oppgave 2
+        /*
+        String[] s = {"Per","Kari","Ole","Anne","Ali","Eva"};
+        Tabell.innsettingssortering(s);
+        System.out.println(Arrays.toString(s));  // [Ali, Anne, Eva, Kari, Ole, Per]
+        */
+
+        // 1.4.3 Oppgave 2
+        /*
+        String s = Integer.toUnsignedString(-1);
+        String t = Integer.toUnsignedString(Integer.MIN_VALUE);
+        System.out.println(s + " " + t);  // 4294967295 2147483648
+
+        int k1 = -1 / 10;                        // kvotient k1 = -(1/10) = 0
+        int k2 = Integer.divideUnsigned(-1,10);  // kvotient
+        System.out.println(k1 + " " + k2);       // 0 429496729
+
+        int d1 = Integer.compare(-1, 1);
+        int d2 = Integer.compareUnsigned(-1, 1);
+        System.out.println(d1 + " " + d2);       // -1 1
+        */
+
+        // 1.4.3 Oppgave 6
+        /*
+        Integer[] a = Tabell.randPermInteger(20);
+        System.out.println(Arrays.toString(a));
+        // En mulig utskrift: [7, 1, 8, 2, 10, 3, 4, 6, 5, 9]
+
+        Tabell.innsettingssortering(a);
+        System.out.println(Arrays.toString(a));
+        // Utskrift: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        */
+
+        // 1.4.3 Oppgave 7
+        /*
+        double[] d = {5.7,3.14,7.12,3.9,6.5,7.1,7.11};
+
+        Double[] e = new Double[d.length];
+
+        for(int i = 0; i < e.length; ++i) {
+            e[i] = d[i];
+        }
+
+        System.out.println(Arrays.toString(e));
+        */
+
+        // 1.4.3 Oppgave 8
+        /*
+        f(1,1);
+
+        // kan bestemme hvilken av metodene som brukes ved å gjøre slik:
+        f(1, (Integer)1);  // nå brukes f(int a, Integer b)
+        f((Integer)1,1);   // f(Integer a, int b)
+        */
+
+        // 1.4.6 Oppgave 1
+        Person[] p = new Person[5];                       // en persontabell
+        p[0] = new Person("Kari", "Svendsen");            // Kari Svendsen
+        p[1] = new Person("Boris", "Zukanovic");          // Boris Zukanovic
+        p[2] = new Person("Ali", "Kahn");                 // Ali Kahn
+        p[3] = new Person("Azra", "Zukanovic");           // Azra Zukanovic
+        p[4] = new Person("Kari", "Pettersen");           // Kari Pettersen
+
+        /* NR 1
+        class FornavnKomparator implements Komparator<Person>
+        {
+            public int compare(Person p1, Person p2)        // to personer
+            {
+                return p1.fornavn().compareTo(p2.fornavn());  // sammenligner fornavn
+            }
+        }
+
+        Komparator<Person> c = new FornavnKomparator();   // en instans av klassen
+        Tabell.innsettingssortering(p, c);                // se Programkode 1.4.6 b)
+
+        System.out.println(Arrays.toString(p));           // Utskrift av tabellen p
+        // utskrift: [Ali Kahn, Azra Zukanovic, Boris Zukanovic, Kari Svendsen, Kari Pettersen]*/
+
+        // NR 2 => mer forkortet enn NR 1
+        /*
+        Komparator<Person> c = (p1,p2) -> p1.fornavn().compareTo(p2.fornavn());
+        Tabell.innsettingssortering(p, c);                // se Programkode 1.4.6 b)
+        System.out.println(Arrays.toString(p));*/
+
+        // NR 3 => mer forkortet enn NR 2
+        /*
+        Tabell.innsettingssortering(p, (p1,p2) -> p1.fornavn().compareTo(p2.fornavn()));
+        System.out.println(Arrays.toString(p));*/
+
+        // 1.4.6 Oppgave 2
+        /*
+        Student[] s = new Student[9];                             // en studenttabell
+        s[0] = new Student("Kari","Svendsen", Studium.Data);      // Kari Svendsen
+        s[1] = new Student("Boris","Zukanovic", Studium.IT);      // Boris Zukanovic
+        s[2] = new Student("Ali","Kahn", Studium.Anvendt);        // Ali Kahn
+        s[3] = new Student("Azra","Zukanovic", Studium.IT);       // Azra Zukanovic
+        s[4] = new Student("Kari","Pettersen", Studium.Data);     // Kari Pettersen
+        // utvider...
+        s[5] = new Student("Fred", "Fredriksen", Studium.Elektro);
+        s[6] = new Student("Nils", "Roger", Studium.Elektro);
+        s[7] = new Student("Knut", "Knutiii", Studium.Enkeltemne);
+        s[8] = new Student("Loke", "Opheim", Studium.Enkeltemne);
+
+        Tabell.innsettingssortering(s, (s1,s2) ->
+        {
+            int cmp = s1.studium().compareTo(s2.studium());
+            return cmp != 0 ? cmp : s1.compareTo(s2);
+        });    // Programkode 1.4.6 b)
+
+        System.out.println(Arrays.toString(s));
+        */
+
+        // 1.4.6 Oppgave 3
+        // Sorterer studenter etter studium, fornavn og etternavn
+        /*Tabell.innsettingssortering(s, (s1,s2) ->
+        {
+           int k = s1.studium().compareTo(s2.studium());
+           if(k != 0) return k;
+           k = s1.fornavn().compareTo(s2.fornavn());
+           if(k != 0) return k;
+           return s1.etternavn().compareTo(s2.etternavn());
+        });*/
+
+        // 1.4.6 Oppgave 5
+        /*
+        String[] s = {"Lars","Anders","Bodil","Kari","Per","Berit"};
+        Tabell.innsettingssortering(s, (s1,s2) -> {
+            int k = s1.length() - s2.length();
+            return k != 0 ? k : s1.compareTo(s2);
+        });
+
+        System.out.println(Arrays.toString(s));
+        */
+
+        // 1.4.6 Oppgave 7
+        /*
+        String[] s = {"21","18","8","13","20","6","16","25","3","10"};
+        Komparator<Student> c = (s1,s2) ->
+        {
+            int cmp = s1.studium().name().compareTo(s2.studium().name());
+            return cmp != 0 ? cmp : s1.compareTo(s2);
+        };
+
+        Tabell.innsettingssortering(s, c);    // Programkode 1.4.6 b)
+        System.out.println(Arrays.toString(s));
+        */
     }
+
+    public static <T> int maks(T[] a, Komparator<? super T> c) {
+        int m = 0;                     // indeks til største verdi
+        T maksverdi = a[0];            // største verdi
+
+        for (int i = 1; i < a.length; i++)
+            if (c.compare(a[i],maksverdi) > 0) {
+                maksverdi = a[i];  // største verdi oppdateres
+                m = i;             // indeks til største verdi oppdaters
+            }
+        return m;  // returnerer posisjonen til største verdi
+    }
+
+    // 1.4.3 Oppgave 8
+    // public static void f(int a, Integer b) { }
+    // public static void f(Integer a, int b) { }
+
+    public static <T> void innsettingssortering(T[] a, Komparator<? super T> c)
+    {
+        for (int i = 1; i < a.length; i++)  // starter med i = 1
+        {
+            T verdi = a[i];        // verdi er et tabellelemnet
+            int  j = i - 1;        // j er en indeks
+
+            // sammenligner og forskyver:
+            for (; j >= 0 && c.compare(verdi,a[j]) < 0 ; j--) a[j+1] = a[j];
+
+            a[j + 1] = verdi;      // j + 1 er rett sortert plass
+        }
+    }
+
+    public static Integer[] randPermInteger(int n)
+    {
+        Integer[] a = new Integer[n];               // en Integer-tabell
+        Arrays.setAll(a, i -> i + 1);               // tallene fra 1 til n
+
+        Random r = new Random();   // hentes fra  java.util
+
+        for (int k = n - 1; k > 0; k--)
+        {
+            int i = r.nextInt(k+1);  // tilfeldig tall fra [0,k]
+            bytt(a,k,i);             // bytter om
+        }
+        return a;  // tabellen med permutasjonen returneres
+    }
+
+    public static void bytt(Object[] a, int i, int j) {
+        Object temp = a[i];
+        a[j] = a[i];
+        a[i] = a[j];
+    }
+
+    public static void skrivln(Object[] a) {
+        skrivln(a, 0, a.length);
+    }
+
+    public static void skrivln(Object[] a, int fra, int til) {
+        skriv(a, fra, til);
+        System.out.println();
+    }
+
+    public static void skriv(Object[] a) {
+        skriv(a, 0, a.length);
+    }
+
+    public static void skriv(Object[] a, int fra, int til) {
+        System.out.print(a[0]);
+        for(int i = fra; i < til; ++i) {
+            System.out.print(" " + a[i]);
+        }
+    }
+
+    public static <T extends Comparable<? super T>> void innsettingssortering(T[] a)
+    {
+        for (int i = 1; i < a.length; i++)  // starter med i = 1
+        {
+            T verdi = a[i];        // verdi er et tabellelemnet
+            int  j = i - 1;        // j er en indeks
+            // sammenligner og forskyver:
+            for (; j >= 0 && verdi.compareTo(a[j]) < 0 ; j--) a[j+1] = a[j];
+
+            a[j + 1] = verdi;      // j + 1 er rett sortert plass
+        }
+    }
+
+    public static <T extends Comparable<? super T>> int maks(T[] a)
+    {
+        int m = 0;                     // indeks til største verdi
+        T maksverdi = a[0];            // største verdi
+
+        for (int i = 1; i < a.length; i++) if (a[i].compareTo(maksverdi) > 0)
+        {
+            maksverdi = a[i];  // største verdi oppdateres
+            m = i;             // indeks til største verdi oppdaters
+        }
+        return m;  // returnerer posisjonen til største verdi
+    } // maks
 
     public static int maks(char[] a)     // legges i class Tabell
     {
@@ -79,7 +325,7 @@ public class Tabell {
         }
         return m;     // returnerer posisjonen til største verdi
     }
-
+    /*
     public static int maks(String[] a)    // legges i class Tabell
     {
         int m = 0;                          // indeks til største verdi
@@ -91,7 +337,7 @@ public class Tabell {
             m = i;             // indeks til største verdi oppdaters
         }
         return m;  // returnerer posisjonen til største verdi
-    }
+    }*/
 
     // 1.2.4: Oppgave 4
     public static void sortering(int[] a) {
