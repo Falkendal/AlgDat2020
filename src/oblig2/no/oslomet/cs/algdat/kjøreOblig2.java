@@ -30,9 +30,12 @@ public class kjøreOblig2 {
         // Oppgave 3b
         Character[] c = { 'A' , 'B' , 'C' , 'D' , 'E' , 'F' , 'G' , 'H' , 'I' , 'J'};
         DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(c);
-        System.out.println(liste.subliste(3,8)); // [D, E, F, G, H]
-        System.out.println(liste.subliste(5,5)); // []
-        System.out.println(liste.subliste(8,liste.antall())); // [I, J]
-        //System.out.println(liste.subliste(0,11)); // skal kaste unntak
+        Integer[] i = { 1 , 2 , 3 , 4 , 7 , 9 , 11 , 14 , 16 , 18};
+        DobbeltLenketListe<Integer> liste1 = new DobbeltLenketListe<>(i);
+
+        System.out.println(liste1.subliste(3,8)); // [D, E, F, G, H]
+        System.out.println(liste1.subliste(5,5)); // []
+        System.out.println(liste1.subliste(8,liste.antall())); // [I, J]
+
     }
 }

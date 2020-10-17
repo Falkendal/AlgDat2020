@@ -922,7 +922,7 @@ class DobbeltLenketListeTest {
             antallFeil++;
         }
     }
-
+/*
     //// Oppgave 7 ////////////////////////////
     @org.junit.jupiter.api.Test
     void oppgave7() {
@@ -1295,5 +1295,5 @@ class DobbeltLenketListeTest {
             antallFeil++;
         }
     }
-
+*/
 }
