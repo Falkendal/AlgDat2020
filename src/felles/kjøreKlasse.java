@@ -1,6 +1,7 @@
 package felles;
 
 import felles.hjelpeklasser.EnkeltLenketListe;
+import felles.hjelpeklasser.Kø;
 import felles.hjelpeklasser.Liste;
 import felles.hjelpeklasser.TabellListe;
 
@@ -69,14 +70,24 @@ public class kjøreKlasse {
         System.out.println(iterator.next());*/
 
         // 3.3.4 Oppgave 2
-        Liste<Integer> liste = new EnkeltLenketListe<>();
+        /*Liste<Integer> liste = new EnkeltLenketListe<>();
         for (int i = 1; i <= 10; i++) liste.leggInn(i);
-        System.out.println(liste);
+        System.out.println(liste);*/
 
         // fjerner partallene
         //liste.fjernHvis(x -> x % 2 == 0);
 
         // skriver ut
         //liste.forEach(x -> System.out.print(x + " "));
+
+        // 4.2.4 Opg 1
+        Kø<Integer> kø = new EnkeltLenketListe<>();
+
+        for (int i = 1; i <= 10; i++) kø.leggInn(i);
+
+        while (!kø.tom())
+        {
+            System.out.print(kø.taUt() + " ");
+        }
     }
 }
